@@ -171,7 +171,103 @@
             btnActualizar.classList.add("d-none");
             btnCancelar.classList.add("d-none");
         })
-    </script>
+
+ cargarAlumnos();
+
+
+
+    
+   // Validaciones por parte del forntend
+
+
+ 
+// VALIDACIONES SENCILLAS
+
+function validarFormulario() {
+
+    // Campos vacíos obligarlos a llenar
+    if (
+        nombre.value === "" ||
+        apellido.value === "" ||
+        telefono.value === "" ||
+        direccion.value === ""
+    ) {
+        alert("Completa todos los campos");
+        return false;
+    }
+
+    //Nombre minimo 3 letras
+    if (nombre.value.length < 3) {
+        alert("El nombre debe tener al menos 3 letras");
+        return false;
+    }
+
+    // Apellido minimo 3 letras
+    if (apellido.value.length < 3) {
+        alert("El apellido debe tener al menos 3 letras");
+        return false;
+    }
+
+    //Nombre sin numeros
+    for (let i = 0; i < nombre.value.length; i++) {
+        if (!isNaN(nombre.value[i])) {
+            alert("El nombre no debe tener números");
+            return false;
+        }
+    }
+
+    //Apellido sin numeros
+    for (let i = 0; i < apellido.value.length; i++) {
+        if (!isNaN(apellido.value[i])) {
+            alert("El apellido no debe tener números");
+            return false;
+        }
+    }
+
+    //Teléfono solo numeros
+    if (isNaN(telefono.value)) {
+        alert("El teléfono solo debe tener números");
+        return false;
+    }
+
+    // Telefono mínimo 8 numeros
+    if (telefono.value.length < 8) {
+        alert("El teléfono debe tener al menos 8 números");
+        return false;
+    }
+
+    // Dirección minima
+    if (direccion.value.length < 5) {
+        alert("La dirección debe tener al menos 5 caracteres");
+        return false;
+    }
+
+    //si  Todo bien
+    return true;
+}
+
+// Validar al guardar
+
+formAlumno.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!validarFormulario()) {
+        return;
+    }
+});
+
+// Validar al actualizar
+
+btnActualizar.addEventListener("click", function () {
+    if (!validarFormulario()) {
+        return;
+    }
+});
+
+
+
+    
+</script>
 
 </body>
 </html>
